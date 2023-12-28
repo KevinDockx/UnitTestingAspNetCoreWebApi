@@ -35,9 +35,9 @@ public class EmployeeFactory
 
         if (isExternal)
         {
-            // we know company won't be null here due to the check above, so 
-            // we can use the null-forgiving operator to notify the compiler of this
-            return new ExternalEmployee(firstName, lastName, null!);
+#pragma warning disable CS8604 // Possible null reference argument. - company is not null in this case due to check above
+            return new ExternalEmployee(firstName, lastName, company);
+#pragma warning restore CS8604 // Possible null reference argument.
         }
 
         // create a new employee with default values 

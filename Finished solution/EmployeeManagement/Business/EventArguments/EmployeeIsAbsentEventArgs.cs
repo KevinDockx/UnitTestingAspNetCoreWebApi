@@ -1,12 +1,6 @@
-﻿namespace EmployeeManagement.Business.EventArguments
-{
-    public class EmployeeIsAbsentEventArgs : EventArgs
-    {
-        public Guid EmployeeId { get; private set; }
+﻿namespace EmployeeManagement.Business.EventArguments;
 
-        public EmployeeIsAbsentEventArgs(Guid employeeId)
-        {
-            EmployeeId = employeeId;
-        }
-    }
+public class EmployeeIsAbsentEventArgs(Guid employeeId) : EventArgs
+{
+    public Guid EmployeeId { get; private set; } = employeeId;
 }

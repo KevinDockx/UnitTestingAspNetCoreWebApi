@@ -2,38 +2,32 @@
 using System.Text;
 using System.Text.Json;
 
-namespace EmployeeManagement.Test.HttpMessageHandlers
+namespace EmployeeManagement.Test.HttpMessageHandlers;
+
+public class TestablePromotionEligibilityHandler(bool isEligibleForPromotion) : HttpMessageHandler
 {
-    public class TestablePromotionEligibilityHandler : HttpMessageHandler
+    private readonly bool _isEligibleForPromotion = isEligibleForPromotion;
+
+    protected override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        private readonly bool _isEligibleForPromotion;
-
-        public TestablePromotionEligibilityHandler(bool isEligibleForPromotion)
+        var promotionEligibility = new PromotionEligibility()
         {
-            _isEligibleForPromotion = isEligibleForPromotion;
-        }
+            EligibleForPromotion = _isEligibleForPromotion
+        };
 
-        protected override Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request, CancellationToken cancellationToken)
+        var response = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
         {
-            var promotionEligibility = new PromotionEligibility()
-            {
-                EligibleForPromotion = _isEligibleForPromotion
-            };
+            Content = new StringContent(
+               JsonSerializer.Serialize(promotionEligibility,
+               new JsonSerializerOptions
+               {
+                   PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+               }),
+               Encoding.ASCII,
+               "application/json")
+        };
 
-            var response = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
-            {
-                Content = new StringContent(
-                   JsonSerializer.Serialize(promotionEligibility,
-                   new JsonSerializerOptions
-                   {
-                       PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                   }),
-                   Encoding.ASCII,
-                   "application/json")
-            };
-
-            return Task.FromResult(response);
-        }
+        return Task.FromResult(response);
     }
 }

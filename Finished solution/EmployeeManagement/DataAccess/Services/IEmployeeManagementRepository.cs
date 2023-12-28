@@ -1,25 +1,24 @@
 ﻿using EmployeeManagement.DataAccess.Entities;
 
-namespace EmployeeManagement.DataAccess.Services
+namespace EmployeeManagement.DataAccess.Services;
+
+public interface IEmployeeManagementRepository
 {
-    public interface IEmployeeManagementRepository
-    {
-        Task<IEnumerable<InternalEmployee>> GetInternalEmployeesAsync();
+    Task<IEnumerable<InternalEmployee>> GetInternalEmployeesAsync();
 
-        InternalEmployee? GetInternalEmployee(Guid employeeId);
+    InternalEmployee? GetInternalEmployee(Guid employeeId);
 
-        Task<InternalEmployee?> GetInternalEmployeeAsync(Guid employeeId);
+    Task<InternalEmployee?> GetInternalEmployeeAsync(Guid employeeId);
 
-        Task<Course?> GetCourseAsync(Guid courseId);
+    Task<Course?> GetCourseAsync(Guid courseId);
 
-        Course? GetCourse(Guid courseId);
+    Course? GetCourse(Guid courseId);
 
-        List<Course> GetCourses(params Guid[] courseIds);
+    List<Course> GetCourses(params Guid[] courseIds);
 
-        Task<List<Course>> GetCoursesAsync(params Guid[] courseIds);
+    Task<List<Course>> GetCoursesAsync(params Guid[] courseIds);
 
-        void AddInternalEmployee(InternalEmployee internalEmployee);
+    void AddInternalEmployee(InternalEmployee internalEmployee);
 
-        Task SaveChangesAsync();
-    }
+    Task SaveChangesAsync();
 }

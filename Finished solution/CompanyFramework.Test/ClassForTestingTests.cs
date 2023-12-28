@@ -1,20 +1,19 @@
 using Xunit;
 
-namespace CompanyFramework.Test
+namespace CompanyFramework.Test;
+
+public class ClassForTestingTests
 {
-    public class ClassForTestingTests
+    [Fact]
+    public void MethodForTesting_Execute_ReturnsTrue()
     {
-        [Fact]
-        public void MethodForTesting_Execute_ReturnsTrue()
-        {
-            // Arrange
-            var classForTesting = new ClassForTesting();
+        // Arrange
+        var classForTesting = new ClassForTesting();
 
-            // Act
-            var result = classForTesting.MethodForTesting();
+        // Act
+        var result = classForTesting.MethodForTesting();
 
-            // Assert
-            Assert.True(result);
-        }
+        // Assert
+        Assert.True(result);
     }
 }

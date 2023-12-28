@@ -1,13 +1,12 @@
 ﻿using Xunit;
 
-namespace EmployeeManagement.Test.TestData
+namespace EmployeeManagement.Test.TestData;
+
+public class StronglyTypedEmployeeServiceTestData : TheoryData<int, bool>
 {
-    public class StronglyTypedEmployeeServiceTestData : TheoryData<int, bool>
+    public StronglyTypedEmployeeServiceTestData()
     {
-        public StronglyTypedEmployeeServiceTestData()
-        {
-            Add(100, true);
-            Add(200, false);
-        }
+        Add(100, true);
+        Add(200, false);
     }
 }

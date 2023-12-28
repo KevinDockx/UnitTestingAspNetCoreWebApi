@@ -2,28 +2,27 @@
 using Microsoft.AspNetCore.Http;
 using Xunit;
 
-namespace EmployeeManagement.Test
+namespace EmployeeManagement.Test;
+
+public class EmployeeManagementSecurityHeadersMiddlewareTests
 {
-    public class EmployeeManagementSecurityHeadersMiddlewareTests
+    [Fact]
+    public async Task InvokeAsync_Invoke_SetsExpectedResponseHeaders()
     {
-        [Fact]
-        public async Task InvokeAsync_Invoke_SetsExpectedResponseHeaders()
-        {
-            // Arrange
-            var httpContext = new DefaultHttpContext();
-            RequestDelegate next = (HttpContext httpContext) => Task.CompletedTask;
+        // Arrange
+        var httpContext = new DefaultHttpContext();
+        RequestDelegate next = (HttpContext httpContext) => Task.CompletedTask;
 
-            var middleware = new EmployeeManagementSecurityHeadersMiddleware(next);
+        var middleware = new EmployeeManagementSecurityHeadersMiddleware(next);
 
-            // Act
-            await middleware.InvokeAsync(httpContext);
+        // Act
+        await middleware.InvokeAsync(httpContext);
 
-            // Assert
-            var cspHeader = httpContext.Response.Headers["Content-Security-Policy"].ToString();
-            var xContentTypeOptionsHeader = httpContext.Response.Headers["X-Content-Type-Options"].ToString();
+        // Assert
+        var cspHeader = httpContext.Response.Headers.ContentSecurityPolicy.ToString();
+        var xContentTypeOptionsHeader = httpContext.Response.Headers.XContentTypeOptions.ToString();
 
-            Assert.Equal("default-src 'self';frame-ancestors 'none';", cspHeader);
-            Assert.Equal("nosniff", xContentTypeOptionsHeader);
-        }
+        Assert.Equal("default-src 'self';frame-ancestors 'none';", cspHeader);
+        Assert.Equal("nosniff", xContentTypeOptionsHeader);
     }
 }

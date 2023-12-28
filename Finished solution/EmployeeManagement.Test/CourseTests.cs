@@ -1,21 +1,20 @@
 ﻿using EmployeeManagement.DataAccess.Entities;
 using Xunit;
 
-namespace EmployeeManagement.Test
+namespace EmployeeManagement.Test;
+
+public class CourseTests
 {
-    public class CourseTests
+    [Fact]
+    public void CourseConstructor_ConstructCourse_IsNewMustBeTrue()
     {
-        [Fact]
-        public void CourseConstructor_ConstructCourse_IsNewMustBeTrue()
-        {
-            // Arrange
-            // nothing to see here
+        // Arrange
+        // nothing to see here
 
-            // Act
-            var course = new Course("Disaster Management 101");
+        // Act
+        var course = new Course("Disaster Management 101");
 
-            // Assert
-            Assert.True(course.IsNew);
-        }
+        // Assert
+        Assert.True(course.IsNew);
     }
 }
