@@ -1,7 +1,6 @@
-﻿namespace EmployeeManagement.Business
+﻿namespace EmployeeManagement.Business;
+
+public class PromotionEligibility
 {
-    public class PromotionEligibility
-    {
-        public bool EligibleForPromotion { get; set; }
-    }
+    public bool EligibleForPromotion { get; set; }
 }

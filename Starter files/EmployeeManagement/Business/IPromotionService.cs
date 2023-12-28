@@ -1,9 +1,8 @@
 ﻿using EmployeeManagement.DataAccess.Entities;
 
-namespace EmployeeManagement.Business
+namespace EmployeeManagement.Business;
+
+public interface IPromotionService
 {
-    public interface IPromotionService
-    {
-        Task<bool> PromoteInternalEmployeeAsync(InternalEmployee employee);
-    }
+    Task<bool> PromoteInternalEmployeeAsync(InternalEmployee employee);
 }

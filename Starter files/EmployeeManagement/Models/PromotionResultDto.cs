@@ -1,8 +1,7 @@
-﻿namespace EmployeeManagement.Models
+﻿namespace EmployeeManagement.Models;
+
+public class PromotionResultDto
 {
-    public class PromotionResultDto
-    {
-        public Guid EmployeeId { get; set; }
-        public int JobLevel { get; set; }
-    }
+    public Guid EmployeeId { get; set; }
+    public int JobLevel { get; set; }
 }
