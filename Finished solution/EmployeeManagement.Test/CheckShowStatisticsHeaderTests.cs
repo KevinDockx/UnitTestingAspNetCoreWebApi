@@ -18,10 +18,13 @@ public class CheckShowStatisticsHeaderTests
         var httpContext = new DefaultHttpContext();
 
         var actionContext = new ActionContext(httpContext, new(), new(), new());
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+        // Manually supressed - controller is not required for unit test
         var actionExecutingContext = new ActionExecutingContext(actionContext,
             new List<IFilterMetadata>(),
             new Dictionary<string, object?>(),
             controller: null);
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
 
         // Act
         checkShowStatisticsHeaderActionFilter.OnActionExecuting(actionExecutingContext);

@@ -73,7 +73,7 @@ public class InternalEmployeeControllerTests
             .IsType<ActionResult<IEnumerable<Models.InternalEmployeeDto>>>(result);
 
         Assert.IsAssignableFrom<IEnumerable<Models.InternalEmployeeDto>>(
-            ((OkObjectResult)actionResult.Result).Value);
+            (actionResult?.Result as OkObjectResult)?.Value);
     }
 
     [Fact]
@@ -88,9 +88,10 @@ public class InternalEmployeeControllerTests
         var actionResult = Assert
             .IsType<ActionResult<IEnumerable<Models.InternalEmployeeDto>>>(result);
 
-        Assert.Equal(3,
-         ((IEnumerable<Models.InternalEmployeeDto>)
-         ((OkObjectResult)actionResult.Result).Value).Count());
+        var valuetoCompare = ((actionResult?.Result as OkObjectResult)?.Value 
+            as IEnumerable<Models.InternalEmployeeDto>)?.Count();
+
+        Assert.Equal(3, valuetoCompare);
     }
 
     [Fact]

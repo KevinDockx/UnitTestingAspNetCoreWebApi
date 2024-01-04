@@ -14,7 +14,7 @@ public class ServiceCollectionTests
         var serviceCollection = new ServiceCollection();
         var configuration = new ConfigurationBuilder()
             .AddInMemoryCollection(
-                new Dictionary<string, string> {
+                new Dictionary<string, string?> {
                     {"ConnectionStrings:EmployeeManagementDB", "AnyValueWillDo"}})
             .Build();
 

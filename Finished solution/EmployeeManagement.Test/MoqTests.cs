@@ -26,7 +26,7 @@ public class MoqTests
             Guid.Parse("72f2f5fe-e50c-4966-8420-d50258aefdcb"));
 
         // Assert  
-        Assert.Equal(400, employee.SuggestedBonus);
+        Assert.Equal(400, employee?.SuggestedBonus);
     }
 
     [Fact]
@@ -101,7 +101,7 @@ public class MoqTests
             Guid.Empty);
 
         // Assert  
-        Assert.Equal(400, employee.SuggestedBonus);
+        Assert.Equal(400, employee?.SuggestedBonus);
     }
 
     [Fact]
@@ -127,8 +127,6 @@ public class MoqTests
         var employee = await employeeService.FetchInternalEmployeeAsync(Guid.Empty);
 
         // Assert  
-        Assert.Equal(400, employee.SuggestedBonus);
-    }
-
-
+        Assert.Equal(400, employee?.SuggestedBonus);
+    } 
 }
