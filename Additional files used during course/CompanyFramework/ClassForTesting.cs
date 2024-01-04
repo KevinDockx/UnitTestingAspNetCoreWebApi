@@ -1,12 +1,13 @@
 ﻿using System.Threading;
 
-namespace CompanyFramework;
-
-public class ClassForTesting
+namespace CompanyFramework
 {
-    public bool MethodForTesting()
+    public class ClassForTesting
     {
-        Thread.Sleep(4000);
-        return true;
+        public bool MethodForTesting()
+        {
+            Thread.Sleep(4000);
+            return true;
+        }
     }
 }
