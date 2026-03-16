@@ -12,8 +12,9 @@ builder.Services.AddSwaggerGen();
 // add HttpClient support
 builder.Services.AddHttpClient("TopLevelManagementAPIClient");
 
-// add AutoMapper for mapping between entities and DTOs
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+// register AutoMapper-related services
+builder.Services.AddAutoMapper(config => { },
+    AppDomain.CurrentDomain.GetAssemblies());
 
 // add other services
 builder.Services.RegisterBusinessServices();

@@ -35,7 +35,7 @@ public class StatisticsControllerTests
             .Returns(featureCollectionMock.Object);
 
         var mapperConfiguration = new MapperConfiguration(
-            cfg => cfg.AddProfile<MapperProfiles.StatisticsProfile>());
+            cfg => cfg.AddProfile<MapperProfiles.StatisticsProfile>(), null);
         var mapper = new Mapper(mapperConfiguration);
 
         var statisticsController = new StatisticsController(

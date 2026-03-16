@@ -37,7 +37,7 @@ public class InternalEmployeeControllerTests
         //     (It.IsAny<InternalEmployee>()))
         //     .Returns(new Models.InternalEmployeeDto());
         var mapperConfiguration = new MapperConfiguration(
-            cfg => cfg.AddProfile<MapperProfiles.EmployeeProfile>());
+            cfg => cfg.AddProfile<MapperProfiles.EmployeeProfile>(), null);
         var mapper = new Mapper(mapperConfiguration);
 
         _internalEmployeesController = new InternalEmployeesController(
